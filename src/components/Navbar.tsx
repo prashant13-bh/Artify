@@ -10,12 +10,14 @@ import {
   Heart, Download, Store, LayoutDashboard, ChevronDown
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import CartDrawer from "./CartDrawer";
 
 const customerLinks = [
   { href: "/", label: "Home", icon: Sparkles },
   { href: "/shop", label: "Shop", icon: ShoppingBag },
   { href: "/studio", label: "AI Studio", icon: Palette },
   { href: "/inspiration", label: "Inspiration", icon: Heart },
+  { href: "/wishlist", label: "Wishlist", icon: Heart },
 ];
 
 const portalLinks = [
@@ -27,6 +29,7 @@ const portalLinks = [
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [portalOpen, setPortalOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
 
@@ -114,7 +117,20 @@ export default function Navbar() {
             </div>
 
             {/* Right side */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2">
+              
+              {/* Cart toggle */}
+              <button
+                onClick={() => setIsCartOpen(true)}
+                className="relative p-2.5 rounded-full hover:bg-surface transition-all duration-300 group"
+                aria-label="Open cart"
+              >
+                <ShoppingBag className="h-5 w-5 text-foreground" />
+                <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-accent text-white text-[10px] font-bold flex items-center justify-center border-2 border-background">
+                  2
+                </span>
+              </button>
+
               {/* Theme toggle */}
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -213,6 +229,8 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );
 }
