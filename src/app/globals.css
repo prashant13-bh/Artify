@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f0f0f;
+  --surface: #f8f9fa;
+  --surface-secondary: #f1f3f5;
+  --surface-elevated: #ffffff;
+  --muted: #6b7280;
+  --border-color: #e5e7eb;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --accent-rgb: 108, 60, 225;
+}
+
+.dark {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --surface: #18181b;
+  --surface-secondary: #1f1f23;
+  --surface-elevated: #27272a;
+  --muted: #a1a1aa;
+  --border-color: #27272a;
+  --glass-bg: rgba(24, 24, 27, 0.7);
+  --glass-border: rgba(63, 63, 70, 0.3);
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --accent-rgb: 139, 92, 246;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Inter", "Plus Jakarta Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Glassmorphism Utility Classes */
+@layer components {
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+  }
+
+  .glass-card-strong {
+    background: var(--glass-bg);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+  }
+
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold text-white rounded-full overflow-hidden transition-all duration-300;
+    background: linear-gradient(135deg, #6c3ce1, #8b5cf6, #a855f7);
+    box-shadow: 0 4px 15px rgba(108, 60, 225, 0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(108, 60, 225, 0.5);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-secondary {
+    @apply relative inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold rounded-full overflow-hidden transition-all duration-300;
+    background: var(--surface);
+    color: var(--foreground);
+    border: 1px solid var(--border-color);
+  }
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    border-color: #8b5cf6;
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
+  }
+
+  .btn-glow {
+    @apply btn-primary;
+    animation: glow-pulse 2s ease-in-out infinite alternate;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #6c3ce1, #a855f7, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-border {
+    border: 1px solid transparent;
+    background-image:
+      linear-gradient(var(--surface), var(--surface)),
+      linear-gradient(135deg, #6c3ce1, #a855f7);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  .input-field {
+    @apply w-full px-5 py-3.5 rounded-2xl text-sm transition-all duration-300 outline-none;
+    background: var(--surface);
+    border: 1.5px solid var(--border-color);
+    color: var(--foreground);
+  }
+  .input-field:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+  }
+  .input-field::placeholder {
+    color: var(--muted);
+  }
+
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      var(--surface) 25%,
+      var(--surface-secondary) 50%,
+      var(--surface) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8b5cf6;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .glass-card,
+  .glass-card-strong {
+    border-radius: 12px;
+  }
+  .btn-primary,
+  .btn-secondary {
+    @apply px-6 py-3 text-sm;
+  }
+}
