@@ -19,6 +19,7 @@ const customerLinks = [
 ];
 
 const portalLinks = [
+  { href: "/become-a-seller", label: "Become a Seller", icon: Store },
   { href: "/seller", label: "Seller Dashboard", icon: Store },
   { href: "/admin", label: "Admin Panel", icon: LayoutDashboard },
 ];

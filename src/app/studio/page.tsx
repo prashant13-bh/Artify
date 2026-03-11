@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import {
   Sparkles, Wand2, Download, RotateCw, Shirt,
   Palette, ChevronDown, Package, MapPin, Calendar,
@@ -450,10 +451,10 @@ export default function StudioPage() {
 
                       {/* Action Buttons */}
                       <div className="flex flex-col sm:flex-row gap-3 w-full max-w-sm mt-6">
-                        <button className="btn-primary flex-1 gap-2">
+                        <Link href="/checkout" className="btn-primary flex-1 gap-2 text-center justify-center">
                           <ShoppingBag className="w-4 h-4" />
-                          Add to Cart — {formatCurrency(1299)}
-                        </button>
+                          Buy Now — {formatCurrency(1299)}
+                        </Link>
                         <button className="btn-secondary gap-2">
                           <Download className="w-4 h-4" />
                           Save

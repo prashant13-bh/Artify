@@ -58,7 +58,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {["About Us", "Become a Seller", "Help Center", "Privacy Policy", "Terms of Service"].map((item) => (
                 <li key={item}>
-                  <Link href="#" className="text-sm text-muted hover:text-accent transition-colors">
+                  <Link href={item === "Become a Seller" ? "/become-a-seller" : "#"} className="text-sm text-muted hover:text-accent transition-colors">
                     {item}
                   </Link>
                 </li>

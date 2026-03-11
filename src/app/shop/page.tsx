@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { ShoppingBag, Star, Filter, Search, SlidersHorizontal, Heart, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -239,10 +240,10 @@ export default function ShopPage() {
               </div>
 
               <div className="flex gap-3">
-                <button className="btn-primary flex-1 gap-2 py-4">
+                <Link href="/checkout" className="btn-primary flex-1 gap-2 py-4">
                   <ShoppingBag className="w-5 h-5" />
-                  Add to Cart
-                </button>
+                  Buy Now
+                </Link>
                 <button
                   onClick={() => toggleWishlist(quickView.id)}
                   className={cn(
